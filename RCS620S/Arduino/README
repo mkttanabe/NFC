@@ -1,0 +1,33 @@
+ソニー株式会社様による以下のライブラリを改変した一式とサンプルプログラムです。
+
+＜Arduino向けRC-S620/S制御ライブラリ＞
+http://blog.felicalauncher.com/?p=2677
+
+ライブラリコードを利用する際には、下記ページの
+「RC-S620/S制御ライブラリ 使用許諾契約」の内容を遵守して下さい。
+http://blog.felicalauncher.com/sdk_for_air/?page_id=2699
+
+
+ ライブラリへ追加した関数 (#ifdef KLAB 箇所)
+
+     polling_typeA() - ISO/IEC 14443 Type A の近接検知と ID の取得
+     polling_typeB() - ISO/IEC 14443 Type B の近接検知と ID の取得
+     getTotalPagesMifareUL() - NTAG21x 専用： メモリの総ページ数を取得
+     readMifareUL() - MIFARE Ultralight 用： 所定のメモリページの内容を読み出す 
+
+ サンプルプログラムの内容
+
+     - ターゲットが ISO/IEC 14443 Type A (MIFARE) の場合
+         ID を取得しシリアルへ出力
+             - MIFARE Ultralight の場合
+                 メモリ内容のダンプをシリアルへ出力
+                     - NDEF メッセージが記録されている場合
+                         NDEF レコード内容を順次取得しシリアルへ出力 
+
+     - ターゲットが ISO/IEC 14443 Type B の場合
+         擬似 ID である PUPI (Pseudo-Unique PICC Identifier) を取得しシリアルへ出力 
+
+     - ターゲットが FeliCa (Standard / Lite / Lite-S) の場合
+         IDm を取得しシリアルへ出力 
+
+2018 KLab Inc.
